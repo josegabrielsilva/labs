@@ -1,6 +1,6 @@
 ﻿#language: en-us
 
-Feature: Cadastro de usuário na API User
+Feature: Cadastro de usuário na API Users
 	Como um desenvolvedor de API
 	Eu quero testar o cadastro de usuário
 	Para garantir que os usuários possam se cadastrar com sucesso no sistema.
