@@ -22,10 +22,13 @@ jobs:
         dotnet-version: 6.0.x
     - name: Restore dependencies
       run: |
-          ls
           cd Labs
           dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      run: |
+          cd Labs
+          dotnet build --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: |
+          cd Labs
+          dotnet test --no-build --verbosity normal
