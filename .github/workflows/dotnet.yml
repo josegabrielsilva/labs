@@ -31,4 +31,4 @@ jobs:
     - name: Test
       run: |
           cd Labs
-          dotnet test --no-build --verbosity normal --project Tests/Labs.UnitTests.csproj
+          dotnet test --no-build --verbosity normal --project Labs.UnitTests/Labs.UnitTests.csproj
