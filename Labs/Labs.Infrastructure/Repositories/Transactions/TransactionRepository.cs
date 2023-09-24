@@ -14,11 +14,10 @@ namespace Labs.Infrastructure.Repositories.Transactions
         } 
 
         public async Task<Transaction?> GetTransactionById(Guid transactionId)
-            => await Task.FromResult(
-                TransactionsStorage.FirstOrDefault(
-                        transaction => transaction?.TransactionId == transactionId, null
-                    )
-                );
-        
+            => await Task.FromResult(TransactionsStorage.FirstOrDefault(
+                        transaction => transaction?.TransactionId == transactionId, null));
+
+        public async Task<IEnumerable<Transaction>> GetTransactionByPeriod(DateTime initial, DateTime final)
+            => await Task.FromResult(TransactionsStorage.Where(x => x.Date >= initial && x.Date <= final));
     }
 }

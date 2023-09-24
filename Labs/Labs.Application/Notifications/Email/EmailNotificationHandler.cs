@@ -1,21 +1,20 @@
-﻿using Labs.Application.Services.Email;
-using MediatR;
+﻿using MediatR;
+using Microsoft.Extensions.Logging;
 
 namespace Labs.Application.Notifications.Email
 {
     public class EmailNotificationHandler : INotificationHandler<EmailNotification>
     {
-        private readonly IEmailService _emailService;
+        private readonly ILogger<EmailNotificationHandler> _logger;
 
-        public EmailNotificationHandler(IEmailService emailService)
+        public EmailNotificationHandler(ILogger<EmailNotificationHandler> logger)
         {
-            _emailService = emailService;
+            _logger = logger;
         }
 
         public Task Handle(EmailNotification notification, CancellationToken cancellationToken)
         {
-            Console.WriteLine($"Mensagem {notification.Message} enviada por E-mail");
-            //_emailService.Send(new EmailModel());
+            _logger.LogInformation($"Mensagem {notification.Message} enviada por E-mail");
 
             return Task.CompletedTask;
         }

@@ -6,5 +6,6 @@ namespace Labs.Application.Repositories.Transactions
     {
         Task<Guid> Create(Transaction transaction);
         Task<Transaction?> GetTransactionById(Guid transactionId);
+        Task<IEnumerable<Transaction>> GetTransactionByPeriod(DateTime initial, DateTime final);
     }
 }

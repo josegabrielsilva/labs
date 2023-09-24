@@ -15,9 +15,12 @@ namespace Labs.Domain.Entities
             SaleValue = saleValue;
             TransactionId = Guid.NewGuid();
             Merchant = merchant;
+            Date = DateTime.UtcNow;
         }
+
         public Guid Merchant { get; set; }
         public Guid TransactionId { get; private set; }
         public double SaleValue { get; private set; }
+        public DateTime Date { get; private set; }
     }
 }

@@ -1,8 +1,8 @@
 ﻿namespace Labs.Infrastructure.Contracts.Api.Transactions
 {
-    public class GetByTransactionIdResponse
+    public class GetTransactionResponse
     {
-        public GetByTransactionIdResponse(double saleValue, Guid merchant)
+        public GetTransactionResponse(double saleValue, Guid merchant)
         {
             SaleValue = saleValue;
             Merchant = merchant;

@@ -6,18 +6,18 @@ using Microsoft.Extensions.Logging;
 
 namespace Labs.Application.UseCases.Transactions
 {
-    public class GetByIdCommandHandler : IRequestHandler<GetByIdCommand, UseCaseResponseContract<Transaction>>
+    public class GetByIdQueryHandler : IRequestHandler<GetByIdQuery, UseCaseResponseContract<Transaction>>
     {
         private readonly ITransactionRepository _transactionRepository;
-        private readonly ILogger<GetByIdCommandHandler> _logger;
+        private readonly ILogger<GetByIdQueryHandler> _logger;
 
-        public GetByIdCommandHandler(ITransactionRepository transactionRepository, ILogger<GetByIdCommandHandler> logger)
+        public GetByIdQueryHandler(ITransactionRepository transactionRepository, ILogger<GetByIdQueryHandler> logger)
         {
             _transactionRepository = transactionRepository;
             _logger = logger;
         }
 
-        public async Task<UseCaseResponseContract<Transaction>> Handle(GetByIdCommand command, CancellationToken cancellationToken)
+        public async Task<UseCaseResponseContract<Transaction>> Handle(GetByIdQuery command, CancellationToken cancellationToken)
         {
             var result = new UseCaseResponseContract<Transaction>();
 

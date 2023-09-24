@@ -4,9 +4,9 @@ using MediatR;
 
 namespace Labs.Application.UseCases.Transactions
 {
-    public class GetByIdCommand : IRequest<UseCaseResponseContract<Transaction>>
+    public class GetByIdQuery : IRequest<UseCaseResponseContract<Transaction>>
     {
-        public GetByIdCommand(Guid transactionId)
+        public GetByIdQuery(Guid transactionId)
         {
             TransactionId = transactionId;
         }
