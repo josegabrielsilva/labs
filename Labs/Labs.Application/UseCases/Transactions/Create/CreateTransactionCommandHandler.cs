@@ -1,5 +1,6 @@
 ﻿using Labs.Application.Contract;
 using Labs.Application.Notifications.Email;
+using Labs.Application.Notifications.Sms;
 using Labs.Application.Repositories.Transactions;
 using Labs.Domain.Entities;
 using Labs.Domain.Exceptions;
@@ -35,7 +36,8 @@ namespace Labs.Application.UseCases.Transactions
 
                 result.Data = response;
 
-                await _mediator.Publish(new EmailNotification("Notificacao enviada por e-mail"));
+                await _mediator.Publish(new EmailNotification("Teste"));
+                await _mediator.Publish(new SmsNotification("Teste"));
             }
             catch(EntityValidationException ex)
             {

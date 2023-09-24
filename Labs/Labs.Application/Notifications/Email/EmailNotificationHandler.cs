@@ -14,8 +14,8 @@ namespace Labs.Application.Notifications.Email
 
         public Task Handle(EmailNotification notification, CancellationToken cancellationToken)
         {
-            _emailService.Send(new EmailModel());
             Console.WriteLine($"Mensagem {notification.Message} enviada por E-mail");
+            //_emailService.Send(new EmailModel());
 
             return Task.CompletedTask;
         }
