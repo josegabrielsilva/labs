@@ -14,6 +14,7 @@ namespace Labs.AcceptanceTests.StepDefinitions
         {
             _client = new HttpClient();
             _client.BaseAddress = new Uri("https://localhost:7007");
+            _response = new HttpResponseMessage();
         }
 
         [Given("que a API User está disponível")]
