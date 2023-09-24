@@ -3,6 +3,6 @@
     public static class ServiceTaxCalculator
     {
         public static double Calculate(double saleValue, double taxPercentual)
-            => saleValue * (taxPercentual / 100)*18;
+            => saleValue * (taxPercentual / 100);
     }
 }
