@@ -19,7 +19,7 @@ namespace Labs.AcceptanceTests.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.9.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class CadastroDeUsuarioNaAPIUserFeature : object, Xunit.IClassFixture<CadastroDeUsuarioNaAPIUserFeature.FixtureData>, System.IDisposable
+    public partial class CadastroDeUsuarioNaAPIUserssFeature : object, Xunit.IClassFixture<CadastroDeUsuarioNaAPIUserssFeature.FixtureData>, System.IDisposable
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -31,7 +31,7 @@ namespace Labs.AcceptanceTests.Features
 #line 1 "UserRegister.feature"
 #line hidden
         
-        public CadastroDeUsuarioNaAPIUserFeature(CadastroDeUsuarioNaAPIUserFeature.FixtureData fixtureData, Labs_AcceptanceTests_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public CadastroDeUsuarioNaAPIUserssFeature(CadastroDeUsuarioNaAPIUserssFeature.FixtureData fixtureData, Labs_AcceptanceTests_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
@@ -40,7 +40,7 @@ namespace Labs.AcceptanceTests.Features
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-us"), "Features", "Cadastro de usuário na API User", "\tComo um desenvolvedor de API\r\n\tEu quero testar o cadastro de usuário\r\n\tPara gara" +
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-us"), "Features", "Cadastro de usuário na API Userss", "\tComo um desenvolvedor de API\r\n\tEu quero testar o cadastro de usuário\r\n\tPara gara" +
                     "ntir que os usuários possam se cadastrar com sucesso no sistema.", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
@@ -91,7 +91,7 @@ namespace Labs.AcceptanceTests.Features
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="Cadastro bem sucedido")]
-        [Xunit.TraitAttribute("FeatureTitle", "Cadastro de usuário na API User")]
+        [Xunit.TraitAttribute("FeatureTitle", "Cadastro de usuário na API Userss")]
         [Xunit.TraitAttribute("Description", "Cadastro bem sucedido")]
         public virtual void CadastroBemSucedido()
         {
@@ -143,7 +143,7 @@ this.FeatureBackground();
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="Tentativa de cadastro com dados inválidos")]
-        [Xunit.TraitAttribute("FeatureTitle", "Cadastro de usuário na API User")]
+        [Xunit.TraitAttribute("FeatureTitle", "Cadastro de usuário na API Userss")]
         [Xunit.TraitAttribute("Description", "Tentativa de cadastro com dados inválidos")]
         public virtual void TentativaDeCadastroComDadosInvalidos()
         {
@@ -195,7 +195,7 @@ this.FeatureBackground();
         }
         
         [Xunit.SkippableFactAttribute(DisplayName="Tentativa de cadastro com um e-mail já existente")]
-        [Xunit.TraitAttribute("FeatureTitle", "Cadastro de usuário na API User")]
+        [Xunit.TraitAttribute("FeatureTitle", "Cadastro de usuário na API Userss")]
         [Xunit.TraitAttribute("Description", "Tentativa de cadastro com um e-mail já existente")]
         public virtual void TentativaDeCadastroComUmE_MailJaExistente()
         {
@@ -254,12 +254,12 @@ this.FeatureBackground();
             
             public FixtureData()
             {
-                CadastroDeUsuarioNaAPIUserFeature.FeatureSetup();
+                CadastroDeUsuarioNaAPIUserssFeature.FeatureSetup();
             }
             
             void System.IDisposable.Dispose()
             {
-                CadastroDeUsuarioNaAPIUserFeature.FeatureTearDown();
+                CadastroDeUsuarioNaAPIUserssFeature.FeatureTearDown();
             }
         }
     }

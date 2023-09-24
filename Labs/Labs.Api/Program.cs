@@ -1,8 +1,8 @@
 using Labs.Application.Repositories.Transactions;
+using Labs.Application.Services.Email;
 using Labs.Application.UseCases.Transactions;
-using Labs.Application.UseCases.Transactions.Create;
 using Labs.Infrastructure.Repositories.Transactions;
-using Microsoft.OpenApi.Models;
+using Labs.Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,12 +14,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //DI
-builder.Services.AddScoped<IGetByIdUseCase, GetByIdUseCase>();
-builder.Services.AddScoped<ICreateUseCase, CreateUseCase>();
-
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
-
+builder.Services.AddScoped<IEmailService, EmailService>(); 
 builder.Services.AddLogging();
+builder.Services.AddMediatR(c => c.RegisterServicesFromAssemblyContaining<CreateTransactionCommandHandler>());
 
 
 var app = builder.Build();
