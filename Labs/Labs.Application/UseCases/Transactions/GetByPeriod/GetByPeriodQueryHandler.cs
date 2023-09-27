@@ -27,7 +27,8 @@ namespace Labs.Application.UseCases.Transactions.GetByPeriod
 
             try
             {
-                var response = await _transactionRepository.GetTransactionByPeriod(request.Initial, request.Final);
+                var response = await _transactionRepository.GetTransactionByPeriod(
+                    request.Initial, request.Final, cancellationToken);
 
                 result.Data = response.ToList();
             }

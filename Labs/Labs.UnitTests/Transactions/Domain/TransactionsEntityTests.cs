@@ -19,5 +19,9 @@ namespace Labs.UnitTests.Transactions.Domain
             transaction.SaleValue.Should().Be(100);
             transaction.TransactionId.Should().NotBeEmpty();
         }
+
+        [Fact]
+        public void When_Merchant_Is_Invalid_Should_Not_Create_Transaction()
+            => Assert.Throws<EntityValidationException>(() => { new Transaction(Guid.Empty, 1); });
     }
 }

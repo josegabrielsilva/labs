@@ -23,7 +23,7 @@ namespace Labs.Application.UseCases.Transactions
 
             try
             {
-                var transaction = await _transactionRepository.GetTransactionById(command.TransactionId);
+                var transaction = await _transactionRepository.GetTransactionById(command.TransactionId, cancellationToken);
 
                 result.Data = transaction;
             }

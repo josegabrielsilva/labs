@@ -6,7 +6,7 @@ namespace Labs.Domain.Entities
     {
         public Transaction(Guid merchant, double saleValue)
         {
-            if (!Guid.TryParse(merchant.ToString(), out _))
+            if (merchant == Guid.Empty || !Guid.TryParse(merchant.ToString(), out _))
                 throw new EntityValidationException(string.Format("Merchant {0} inválido.", merchant));
 
             if (saleValue <= 0)

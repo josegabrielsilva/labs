@@ -32,12 +32,12 @@ namespace Labs.Application.UseCases.Transactions
             {
                 var transaction = new Transaction(command.Merchant, command.SaleValue);
 
-                var response = await _transactionRepository.Create(transaction);
+                var response = await _transactionRepository.Create(transaction, cancellationToken);
 
                 result.Data = response;
 
-                await _mediator.Publish(new EmailNotification("Teste"));
-                await _mediator.Publish(new SmsNotification("Teste"));
+                await _mediator.Publish(new EmailNotification("Teste"), cancellationToken);
+                await _mediator.Publish(new SmsNotification("Teste"), cancellationToken);
             }
             catch(EntityValidationException ex)
             {

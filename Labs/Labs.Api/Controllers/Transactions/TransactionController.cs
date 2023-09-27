@@ -17,13 +17,13 @@ namespace Labs.Api.Controllers.Transactions
         private readonly IMediator Mediator;
         public TransactionController(IMediator mediator) => Mediator = mediator;
 
-        [HttpGet("GetById/{transactionId}")]
+        [HttpGet("GetBy/{transactionId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [SwaggerOperation(Description = "Obter uma transação pelo Guid informado na rota")]
-        public async Task<ActionResult<GetTransactionResponse>> GetById(
-            [FromRoute][Required] Guid transactionId, 
+        public async Task<ActionResult<GetTransactionResponse>> GetByTransactionId(
+            [Required] Guid transactionId, 
             CancellationToken cancellationToken)
         {
             var response = await Mediator.Send(new GetByIdQuery(transactionId), cancellationToken);
@@ -33,17 +33,17 @@ namespace Labs.Api.Controllers.Transactions
 
             return response.Data != null
                 ? Ok(response.Data.ToApiResponseContract())
-                : NotFound();
+                : NotFound(new { Message = "Nenhuma transação encontrada para o ID especificado." });
         }
 
-        [HttpGet("GetByPeriod/{initialDate}/{finalDate}")]
+        [HttpGet("GetBy/{initialDate}/{finalDate}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [SwaggerOperation(Description = "Obter transações por período")]
         public async Task<ActionResult<GetTransactionResponse>> GetByPeriod(
-            [FromRoute][Required] DateTime initialDate, 
-            [FromRoute][Required] DateTime finalDate,
+            [Required] DateTime initialDate, 
+            [Required] DateTime finalDate,
             CancellationToken cancellationToken)
         {
             var response = await Mediator.Send(new GetByPeriodQuery(initialDate, finalDate), cancellationToken);
@@ -51,9 +51,9 @@ namespace Labs.Api.Controllers.Transactions
             if (!response.ProcessedWithSuccess)
                 return StatusCode((int)HttpStatusCode.InternalServerError, CommonMessages.INTERNAL_SERVER_ERROR_DEFAULT_MESSAGE);
 
-            return response.Data != null
+            return response.Data != null && response.Data.Any()
                 ? Ok(response.Data.ToApiResponseContract())
-                : NotFound();
+                : NotFound(new { Message = "Nenhuma transação encontrada para o período especificado." });
         }
 
         [HttpPost("Create")]
@@ -65,14 +65,23 @@ namespace Labs.Api.Controllers.Transactions
             [FromBody][Required] CreateTransactionCommand command, 
             CancellationToken cancellationToken)
         {
-            var response = await Mediator.Send(command, cancellationToken);
+            try
+            {
+                var response = await Mediator.Send(command, cancellationToken);
 
-            if (!response.ProcessedWithSuccess)
-                return StatusCode((int)HttpStatusCode.InternalServerError, CommonMessages.INTERNAL_SERVER_ERROR_DEFAULT_MESSAGE);
+                cancellationToken.ThrowIfCancellationRequested();
 
-            return response.ValidationMessages.Any() 
-                ? UnprocessableEntity(response.ValidationMessages)
-                : CreatedAtAction("GetByTransactionId", new { transactionId = response.Data }, command);
+                if (!response.ProcessedWithSuccess)
+                    return StatusCode((int)HttpStatusCode.InternalServerError, CommonMessages.INTERNAL_SERVER_ERROR_DEFAULT_MESSAGE);
+
+                return response.ValidationMessages.Any()
+                    ? UnprocessableEntity(response.ValidationMessages)
+                    : CreatedAtAction(nameof(GetByTransactionId), new { transactionId = response.Data }, command);
+            }
+            catch (OperationCanceledException)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Operação cancelada pelo cliente.");
+            }
         }
     }
 }
